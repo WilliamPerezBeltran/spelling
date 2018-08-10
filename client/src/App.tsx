@@ -1,19 +1,17 @@
 import * as React from 'react';
+
+import Activity from './Activity';
+import AppState from './AppState';
+
 import styles from './App.module.sass';
 
-import logo from './logo.svg';
+const appState = new AppState();
 
 class App extends React.Component {
   public render() {
     return (
-      <div className={styles.App}>
-        <header className={styles.AppHeader}>
-          <img src={logo} className={styles.AppLogo} alt="logo" />
-          <h1 className={styles.AppTitle}>Welcome to React</h1>
-        </header>
-        <p className={styles.AppIntro}>
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      <div className={styles.app}>
+        <Activity appState={appState} />
       </div>
     );
   }
