@@ -2,18 +2,23 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3100",
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
-  "proxy": "http://localhost:3100",
   "devDependencies": {
-    "react-scripts": "1.1.4"
+    "@types/jest": "^23.3.1",
+    "@types/node": "^10.5.7",
+    "@types/react": "^16.4.9",
+    "@types/react-dom": "^16.0.7",
+    "react-scripts-ts": "2.17.0",
+    "typescript": "^3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   }
 }
