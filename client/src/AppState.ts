@@ -1,54 +1,28 @@
-import { action, computed, observable } from 'mobx';
+import { action, observable } from 'mobx';
+
+import Term from './Term';
 
 const terms: string[] = ['engagement', 'beautiful', 'debugging', 'let down'];
 
 class AppState {
-  @observable
-  public term = terms[Math.floor(Math.random() * terms.length)];
+  public term = new Term(terms[Math.floor(Math.random() * terms.length)]);
   @observable
   public input = '';
 
-  @computed
-  public get letters(): string[] {
-    return this.term
-      .split('')
-      .reduce(
-        (a: string[], v: string) =>
-          a.splice(Math.floor(Math.random() * a.length), 0, v) && a,
-        []
-      );
-  }
-
-  @computed
-  public get used(): string[] {
-    return this.input.split('');
-  }
-
-  @computed
-  public get available(): string[] {
-    const available: string[] = [...this.letters];
-
-    this.used.forEach(letter => {
-      available.splice(available.indexOf(letter), 1);
-    });
-
-    return available;
+  @action
+  public setInput(input: string) {
+    this.input = input;
+    this.term.update(this.input);
   }
 
   @action
-  public setInput(input: string) {
-    const available: string[] = [...this.letters];
-    const allowed = input.split('').filter(letter => {
-      const includes = available.includes(letter);
-      available.splice(available.indexOf(letter), 1);
-      return includes;
-    });
-
-    this.input = allowed.join('');
+  public tap(index: number) {
+    this.input = this.input.concat(this.term.data[index].char);
+    this.term.tap(index);
   }
 
   public check() {
-    if (this.input === this.term) {
+    if (this.input === this.term.original) {
       alert('YES!');
     } else {
       alert('NO, NO');

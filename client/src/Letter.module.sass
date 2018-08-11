@@ -1,13 +1,18 @@
-$gray: hsl(210, 90%, 80%)
+$letter: hsl(210, 90%, 80%)
 
 .container
-  background: $gray
+  background: $letter
   border-radius: 0.25rem
   display: inline-block
   margin-right: 0.25rem
   padding: 0.5rem
 
-.letter
+.char
   display: inline-block
   line-height: 2rem
   width: 2rem
+
+.unavailableChar
+  composes: char
+  color: $letter
+  pointer-events: none

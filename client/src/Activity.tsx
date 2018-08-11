@@ -20,14 +20,20 @@ class Activity extends React.Component<{ appState: AppState }, {}> {
           letters.
         </h3>
 
-        <p>{this.props.appState.term}</p>
+        <p>{this.props.appState.term.original}</p>
 
         <form onSubmit={this.onCheck}>
           <Input appState={this.props.appState} />
 
           <div>
-            {this.props.appState.available.map((letter, index) => (
-              <Letter key={`${index}-${letter}`} letter={letter} />
+            {this.props.appState.term.data.map(({ char, available }, index) => (
+              <Letter
+                key={`${index}-${char}`}
+                index={index}
+                char={char}
+                available={available}
+                appState={this.props.appState}
+              />
             ))}
           </div>
 
@@ -41,7 +47,7 @@ class Activity extends React.Component<{ appState: AppState }, {}> {
     e.preventDefault();
 
     this.props.appState.check();
-  }
+  };
 }
 
 export default Activity;
