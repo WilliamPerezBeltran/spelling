@@ -19,7 +19,7 @@ class AppState {
   @action
   public setInput(index: number, input: string) {
     this.inputArray[index] = input;
-    this.term.update(this.input);
+    this.term.update(this.inputArray);
 
     this.setFocus(input ? index + 1 : index);
   }
@@ -34,11 +34,14 @@ class AppState {
   }
 
   public check() {
-    if (this.input === this.term.original) {
-      alert('YES!');
-    } else {
-      alert('NO, NO');
+    if (this.input !== this.term.original) {
+      console.log('NO, NO');
+      return false;
+
     }
+
+    console.log('YES!');
+    return true;
   }
 
   @action

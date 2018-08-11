@@ -17,7 +17,7 @@ class Letter extends React.Component<IProps, {}> {
       <div className={styles.container} onClick={this.onClick}>
         <span
           className={
-            this.props.available ? styles.char : styles.unavailableChar
+            this.props.available ? styles.char : styles.charUnavailable
           }
         >
           {this.props.char === ' ' ? '_' : this.props.char}

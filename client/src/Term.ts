@@ -32,23 +32,24 @@ class Term {
   }
 
   @computed
-  get used(): ILetter[] {
-    return this.data.filter(letter => !letter.available);
-  }
-
-  @computed
-  get available(): ILetter[] {
-    return this.data.filter(letter => letter.available);
+  get available(): string[] {
+    return this.data
+      .filter(letter => letter.available)
+      .map(letter => letter.char);
   }
 
   @action
-  public update(input: string) {
-    const data = this.data.map(({ char, available }) => ({
+  public update(inputArray: string[]) {
+    const data = this.data.map(({ char }) => ({
       available: true,
       char
     }));
 
-    input.split('').forEach(char => {
+    inputArray.forEach(char => {
+      if (!char) {
+        return;
+      }
+
       const foundIndex = data.findIndex(
         letter => letter.available && letter.char === char
       );

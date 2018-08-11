@@ -57,7 +57,7 @@ class Input extends React.Component<IProps, {}> {
   private onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const allowed = [
       'Enter',
-      ...this.props.appState.term.available.map(letter => letter.char)
+      ...this.props.appState.term.available
     ];
 
     if (!allowed.includes(e.key)) {
