@@ -23,9 +23,11 @@ class Activity extends React.Component<{ appState: AppState }, {}> {
         <p>{this.props.appState.term.original}</p>
 
         <form onSubmit={this.onCheck}>
-          <Input appState={this.props.appState} />
+          <div className={styles.inputContainer}>
+            <Input appState={this.props.appState} />
+          </div>
 
-          <div>
+          <div className={styles.lettersContainer}>
             {this.props.appState.term.data.map(({ char, available }, index) => (
               <Letter
                 key={`${index}-${char}`}
