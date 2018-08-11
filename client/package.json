@@ -48,13 +48,18 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.1.13",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/jest": "^23.3.1",
     "@types/node": "^10.5.7",
     "@types/react": "^16.4.9",
     "@types/react-dom": "^16.0.7",
+    "enzyme": "^3.4.1",
+    "enzyme-adapter-react-16": "^1.2.0",
     "identity-obj-proxy": "^3.0.0",
     "node-sass": "^4.9.3",
     "prettier": "^1.14.2",
+    "react-test-renderer": "^16.4.2",
     "sass-loader": "^7.1.0",
     "typescript": "^3.0.1"
   },
@@ -68,7 +73,8 @@
       "src/**/*.{js,jsx,ts,tsx}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/testSetup.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.(j|t)s?(x)",
@@ -87,7 +93,7 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-       "\\.(css|scss|sass)$": "identity-obj-proxy"
+      "\\.(css|scss|sass)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": [
       "web.ts",

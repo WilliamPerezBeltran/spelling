@@ -12,7 +12,7 @@ interface IProps {
 
 @observer
 class Input extends React.Component<IProps, {}> {
-  private fields: HTMLInputElement[] = [];
+  public fields: HTMLInputElement[] = [];
 
   public componentDidMount() {
     this.fields[this.props.appState.focusIndex].focus();
@@ -55,10 +55,7 @@ class Input extends React.Component<IProps, {}> {
   };
 
   private onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const allowed = [
-      'Enter',
-      ...this.props.appState.term.available
-    ];
+    const allowed = ['Enter', ...this.props.appState.term.available];
 
     if (!allowed.includes(e.key)) {
       e.preventDefault();
