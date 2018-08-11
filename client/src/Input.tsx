@@ -8,6 +8,12 @@ import styles from './Input.module.sass';
 
 @observer
 class Input extends React.Component<{ appState: AppState }, {}> {
+  public componentDidMount() {
+    const first = document.querySelector<HTMLFormElement>('form')!
+      .elements[0] as HTMLInputElement;
+    first.focus();
+  }
+
   public render() {
     return this.props.appState.term.chars.map((char, index) => (
       <input
@@ -49,7 +55,7 @@ class Input extends React.Component<{ appState: AppState }, {}> {
     if (!allowed.includes(e.key)) {
       e.preventDefault();
     }
-  }
+  };
 
   private onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
