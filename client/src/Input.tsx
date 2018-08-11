@@ -13,6 +13,7 @@ class Input extends React.Component<{ appState: AppState }, {}> {
       <input
         key={`${index}-${char}`}
         onKeyDown={this.onKeyDown}
+        onKeyPress={this.onKeyPress}
         onChange={this.onChange}
         type="text"
         value={this.props.appState.inputArray[index] || ''}
@@ -36,20 +37,19 @@ class Input extends React.Component<{ appState: AppState }, {}> {
         const element = elements[nextIndex] as HTMLInputElement;
         element.focus();
       }
-
-      return;
     }
+  };
 
+  private onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const allowed = [
       'Enter',
-      'Backspace',
       ...this.props.appState.term.available.map(letter => letter.char)
     ];
 
     if (!allowed.includes(e.key)) {
       e.preventDefault();
     }
-  };
+  }
 
   private onChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
