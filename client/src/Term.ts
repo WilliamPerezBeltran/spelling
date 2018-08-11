@@ -27,6 +27,10 @@ class Term {
     return this.original.split('');
   }
 
+  public get length(): number {
+    return this.original.length;
+  }
+
   @computed
   get used(): ILetter[] {
     return this.data.filter(letter => !letter.available);

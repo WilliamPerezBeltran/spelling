@@ -8,6 +8,8 @@ class AppState {
   public term = new Term(terms[Math.floor(Math.random() * terms.length)]);
   @observable
   public inputArray: string[] = this.term.chars.map(() => '');
+  @observable
+  public focusIndex: number = 0;
 
   @computed
   public get input(): string {
@@ -19,9 +21,7 @@ class AppState {
     this.inputArray[index] = input;
     this.term.update(this.input);
 
-    if (input) {
-      this.next(index);
-    }
+    this.setFocus(input ? index + 1 : index);
   }
 
   @action
@@ -30,7 +30,7 @@ class AppState {
     this.inputArray[insertAt] = this.term.data[index].char;
     this.term.tap(index);
 
-    this.next(insertAt);
+    this.setFocus(insertAt + 1);
   }
 
   public check() {
@@ -41,11 +41,11 @@ class AppState {
     }
   }
 
-  private next(index: number) {
-    const next = document.querySelector<HTMLFormElement>('form')!.elements[
-      index + 1
-    ] as HTMLInputElement;
-    next.focus();
+  @action
+  private setFocus(index: number) {
+    if (index > -1 && index < this.term.length) {
+        this.focusIndex = index;
+    }
   }
 }
 

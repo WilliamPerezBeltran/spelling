@@ -6,12 +6,20 @@ import AppState from './AppState';
 
 import styles from './Input.module.sass';
 
+interface IProps {
+  appState: AppState;
+}
+
 @observer
-class Input extends React.Component<{ appState: AppState }, {}> {
+class Input extends React.Component<IProps, {}> {
+  private fields: HTMLInputElement[] = [];
+
   public componentDidMount() {
-    const first = document.querySelector<HTMLFormElement>('form')!
-      .elements[0] as HTMLInputElement;
-    first.focus();
+    this.fields[this.props.appState.focusIndex].focus();
+  }
+
+  public componentDidUpdate(prevProps: IProps, prevState: any, snapshot: any) {
+    this.fields[this.props.appState.focusIndex].focus();
   }
 
   public render() {
@@ -26,14 +34,14 @@ class Input extends React.Component<{ appState: AppState }, {}> {
         maxLength={1}
         className={styles.input}
         data-index={index}
+        ref={ref => (this.fields[index] = ref as HTMLInputElement)}
       />
     ));
   }
 
   private onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const index = parseInt(e.currentTarget.dataset.index || '', 10);
-    const elements = e.currentTarget.form!
-      .elements as HTMLFormControlsCollection;
+    const elements = this.fields;
 
     if (e.which === 37 || e.which === 39) {
       e.preventDefault();
