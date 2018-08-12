@@ -29,13 +29,21 @@ class Form extends React.Component<{ appState: AppState }, {}> {
           ))}
         </div>
 
-        <input type="submit" value="Check" />
+        <input
+          type="submit"
+          value="Check"
+          disabled={!this.props.appState.ready}
+        />
       </form>
-    )
+    );
   }
 
   private onCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!this.props.appState.ready) {
+      return;
+    }
 
     this.props.appState.check();
   };

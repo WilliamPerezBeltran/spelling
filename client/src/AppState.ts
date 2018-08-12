@@ -16,6 +16,11 @@ class AppState {
     return this.inputArray.join('');
   }
 
+  @computed
+  public get ready(): boolean {
+    return this.input.length === this.term.length;
+  }
+
   @action
   public setInput(index: number, input: string) {
     this.inputArray[index] = input;
