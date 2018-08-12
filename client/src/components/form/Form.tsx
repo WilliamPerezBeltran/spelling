@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { observer } from 'mobx-react';
 
-import AppState from './AppState';
-import Input from './Input';
-import Letter from './Letter';
+import AppState from '../app-state';
+import Input from '../input';
+import Letter from '../letter';
 
 import styles from './Form.module.sass';
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { observer } from 'mobx-react';
 
-import AppState from './AppState';
+import AppState from '../app-state';
 
 import styles from './Input.module.sass';
 

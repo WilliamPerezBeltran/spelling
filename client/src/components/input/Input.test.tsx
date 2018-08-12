@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { mount } from 'enzyme';
 
-import AppState from './AppState';
+import AppState from '../app-state';
+
 import Input from './Input';
 
 const appState = new AppState();

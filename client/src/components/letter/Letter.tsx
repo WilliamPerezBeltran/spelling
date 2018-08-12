@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import styles from './Letter.module.sass';
+import AppState from '../app-state';
 
-import AppState from './AppState';
+import styles from './Letter.module.sass';
 
 interface IProps {
   index: number;

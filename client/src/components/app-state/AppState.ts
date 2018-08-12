@@ -1,6 +1,6 @@
 import { action, computed, observable } from 'mobx';
 
-import Term from './Term';
+import Term from '../term';
 
 const terms: string[] = ['engagement', 'beautiful', 'debugging', 'drop it'];
 

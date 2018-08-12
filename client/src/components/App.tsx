@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import Activity from './Activity';
-import AppState from './AppState';
+import Activity from './activity';
+import AppState from './app-state';
 
 import styles from './App.module.sass';
 

@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { shallow } from 'enzyme';
 
-import AppState from './AppState';
+import AppState from '../app-state';
+
 import Letter from './Letter';
 
 const appState = new AppState();

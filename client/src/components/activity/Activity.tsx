@@ -3,9 +3,9 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
-import AppState from './AppState';
-import Form from './Form';
-import Speech from './Speech';
+import AppState from '../app-state';
+import Form from '../form';
+import Speech from '../speech';
 
 import styles from './Activity.module.sass';
 

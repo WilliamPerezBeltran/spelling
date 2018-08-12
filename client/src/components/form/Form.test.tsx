@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { shallow } from 'enzyme';
 
-import AppState from './AppState';
+import AppState from '../app-state';
 import Form from './Form';
 
 const appState = new AppState();
