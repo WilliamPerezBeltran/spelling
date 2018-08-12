@@ -14,8 +14,6 @@ describe('<Input />', () => {
     const wrapper = mount(<Input appState={appState} />);
 
     expect(wrapper.find('input')).toHaveLength(appState.term.length);
-    const instance = wrapper.instance() as Input;
-    expect(instance.fields).toHaveLength(appState.term.length);
 
     wrapper
       .find('input')

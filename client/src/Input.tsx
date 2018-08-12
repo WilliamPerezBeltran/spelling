@@ -12,7 +12,7 @@ interface IProps {
 
 @observer
 class Input extends React.Component<IProps, {}> {
-  public fields: HTMLInputElement[] = [];
+  private fields: HTMLInputElement[] = [];
 
   public componentDidMount() {
     this.fields[this.props.appState.focusIndex].focus();

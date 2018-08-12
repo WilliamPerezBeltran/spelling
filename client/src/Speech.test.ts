@@ -7,8 +7,5 @@ describe('Speech', () => {
 
     speech.speak('hello');
     expect(speech.speaking).toBeTruthy();
-
-    speech.onStop();
-    expect(speech.speaking).toBeFalsy();
   });
 });

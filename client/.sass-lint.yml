@@ -24,6 +24,7 @@ rules:
        - "-moz-border-radius-topright"
        - "-moz-border-radius-bottomleft"
        - "-moz-border-radius-bottomright"
+       - "composes"
   variable-name-format:
     - 1
     - allow-leading-underscore: true

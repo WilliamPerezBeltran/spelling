@@ -42,7 +42,6 @@ class AppState {
     if (this.input !== this.term.original) {
       console.log('NO, NO');
       return false;
-
     }
 
     console.log('YES!');
@@ -52,7 +51,7 @@ class AppState {
   @action
   private setFocus(index: number) {
     if (index > -1 && index < this.term.length) {
-        this.focusIndex = index;
+      this.focusIndex = index;
     }
   }
 }
