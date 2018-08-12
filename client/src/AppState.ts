@@ -2,7 +2,7 @@ import { action, computed, observable } from 'mobx';
 
 import Term from './Term';
 
-const terms: string[] = ['engagement', 'beautiful', 'debugging', 'let down'];
+const terms: string[] = ['engagement', 'beautiful', 'debugging', 'drop it'];
 
 class AppState {
   public term = new Term(terms[Math.floor(Math.random() * terms.length)]);

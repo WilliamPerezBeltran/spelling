@@ -15,8 +15,11 @@ describe('<Form />', () => {
     expect(wrapper.find('form')).toHaveLength(1);
     expect(wrapper.find('input[type="submit"]')).toHaveLength(1);
 
+    wrapper.find('form').simulate('submit', { preventDefault: () => true });
+
     appState.inputArray = appState.term.chars;
     wrapper.find('form').simulate('submit', { preventDefault: () => true });
-    expect(checkMock).toHaveBeenCalled();
+
+    expect(checkMock).toHaveBeenCalledTimes(1);
   });
 });

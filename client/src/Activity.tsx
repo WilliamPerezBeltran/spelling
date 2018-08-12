@@ -1,13 +1,22 @@
 import * as React from 'react';
 
+import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
 import AppState from './AppState';
 import Form from './Form';
+import Speech from './Speech';
 
 import styles from './Activity.module.sass';
 
+@observer
 class Activity extends React.Component<{ appState: AppState }, {}> {
+  private speech = new Speech();
+
+  public componentDidMount() {
+    this.speak();
+  }
+
   public render() {
     return (
       <div className={styles.activity}>
@@ -19,10 +28,20 @@ class Activity extends React.Component<{ appState: AppState }, {}> {
 
         <Form appState={this.props.appState} />
 
-        <p>{this.props.appState.term.original}</p>
+        <button
+          onClick={this.speak}
+          className={styles.button}
+          disabled={this.speech.speaking}
+        >
+          Speak!
+        </button>
       </div>
     );
   }
+
+  private speak = () => {
+    this.speech.speak(this.props.appState.term.original);
+  };
 }
 
 export default Activity;

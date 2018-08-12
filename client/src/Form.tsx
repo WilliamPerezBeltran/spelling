@@ -12,7 +12,7 @@ import styles from './Form.module.sass';
 class Form extends React.Component<{ appState: AppState }, {}> {
   public render() {
     return (
-      <form onSubmit={this.onCheck}>
+      <form onSubmit={this.onCheck} className={styles.form}>
         <div className={styles.inputContainer}>
           <Input appState={this.props.appState} />
         </div>
