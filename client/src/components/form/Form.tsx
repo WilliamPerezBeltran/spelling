@@ -11,6 +11,7 @@ import styles from './Form.module.sass';
 @observer
 class Form extends React.Component<{ appState: AppState }, {}> {
   public render() {
+    const { appState } = this.props;
     return (
       <form onSubmit={this.onCheck} className={styles.form}>
         <div className={styles.inputContainer}>
@@ -18,13 +19,13 @@ class Form extends React.Component<{ appState: AppState }, {}> {
         </div>
 
         <div className={styles.lettersContainer}>
-          {this.props.appState.term.data.map(({ char, available }, index) => (
+          {appState.term.data.map(({ char, available }, index) => (
             <Letter
               key={`${index}-${char}`}
               index={index}
               char={char}
               available={available}
-              appState={this.props.appState}
+              appState={appState}
             />
           ))}
         </div>
@@ -32,7 +33,7 @@ class Form extends React.Component<{ appState: AppState }, {}> {
         <input
           type="submit"
           value="Check"
-          disabled={!this.props.appState.ready}
+          disabled={!appState.ready || appState.checked}
         />
       </form>
     );

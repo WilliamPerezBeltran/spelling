@@ -3,6 +3,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 
 import AppState from '../app-state';
+import Audio from '../audio';
 
 import styles from './Input.module.sass';
 
@@ -23,20 +24,48 @@ class Input extends React.Component<IProps, {}> {
   }
 
   public render() {
-    return this.props.appState.term.chars.map((char, index) => (
-      <input
+    const { appState } = this.props;
+
+    return appState.term.chars.map((char, index) => (
+      <span
         key={`${index}-${char}`}
-        onKeyDown={this.onKeyDown}
-        onKeyPress={this.onKeyPress}
-        onChange={this.onChange}
-        type="text"
-        value={this.props.appState.inputArray[index] || ''}
-        maxLength={1}
-        className={styles.input}
-        data-index={index}
-        ref={ref => (this.fields[index] = ref as HTMLInputElement)}
-      />
+        data-char={char}
+        className={this.className(
+          char,
+          appState.inputArray[index],
+          'container'
+        )}
+      >
+        <input
+          onKeyDown={this.onKeyDown}
+          onKeyPress={this.onKeyPress}
+          onChange={this.onChange}
+          type="text"
+          value={appState.inputArray[index] || ''}
+          maxLength={1}
+          readOnly={appState.checked}
+          className={this.className(char, appState.inputArray[index], 'input')}
+          data-index={index}
+          ref={ref => (this.fields[index] = ref as HTMLInputElement)}
+        />
+      </span>
     ));
+  }
+
+  private className(char: string, input: string, baseClass: string) {
+    const className = styles[baseClass];
+
+    if (!this.props.appState.checked) {
+      return className;
+    }
+
+    return className.concat(
+      ` ${
+        char === input
+          ? styles[baseClass + 'Success']
+          : styles[baseClass + 'Error']
+      }`
+    );
   }
 
   private onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -52,6 +81,10 @@ class Input extends React.Component<IProps, {}> {
         element.focus();
       }
     }
+
+    if (e.which === 8 || e.which === 46) {
+      Audio.tap();
+    }
   };
 
   private onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -59,7 +92,10 @@ class Input extends React.Component<IProps, {}> {
 
     if (!allowed.includes(e.key)) {
       e.preventDefault();
+      return;
     }
+
+    Audio.tap();
   };
 
   private onChange = (e: React.FormEvent<HTMLInputElement>) => {

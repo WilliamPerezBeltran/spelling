@@ -1,8 +1,9 @@
 import { action, computed, observable } from 'mobx';
 
+import Audio from '../audio';
 import Term from '../term';
 
-const terms: string[] = ['engagement', 'beautiful', 'debugging', 'drop it'];
+const terms: string[] = ['nice', 'done', 'dog', 'get it'];
 
 class AppState {
   public term = new Term(terms[Math.floor(Math.random() * terms.length)]);
@@ -10,6 +11,8 @@ class AppState {
   public inputArray: string[] = this.term.chars.map(() => '');
   @observable
   public focusIndex: number = 0;
+  @observable
+  public checked: boolean = false;
 
   @computed
   public get input(): string {
@@ -38,13 +41,16 @@ class AppState {
     this.setFocus(insertAt + 1);
   }
 
+  @action
   public check() {
+    this.checked = true;
+
     if (this.input !== this.term.original) {
-      console.log('NO, NO');
+      Audio.heartbeat();
       return false;
     }
 
-    console.log('YES!');
+    Audio.check();
     return true;
   }
 

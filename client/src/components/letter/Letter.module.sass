@@ -1,20 +1,29 @@
-$letter: hsl(210, 90%, 80%)
-$borderColor: hsl(210, 17%, 70%)
+$letter: hsla(210, 90%, 80%, 0.3)
+$borderColor: hsl(210, 10%, 80%)
+$white: #ffffff
 
 .container
   background: $letter
-  border: 1px solid $borderColor
+  border: 2px solid $borderColor
   border-radius: 0.25rem
+  cursor: pointer
   display: inline-block
   margin-right: 0.25rem
   padding: 0.5rem
 
+.containerUnavailable
+  composes: container
+  background: transparent
+  border-style: dashed
+  cursor: default
+
 .char
   display: inline-block
   line-height: 2rem
+  text-transform: capitalize
   width: 2rem
 
 .charUnavailable
   composes: char
-  color: $letter
+  color: $white
   pointer-events: none
