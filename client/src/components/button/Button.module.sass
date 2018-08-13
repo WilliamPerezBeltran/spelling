@@ -1,0 +1,27 @@
+@import "../../styles/variables"
+
+.button
+  background: $primaryColor
+  border: 0 none
+  border-radius: 0.25rem
+  box-shadow: -10px 10px 20px $shadowColor
+  color: $white
+  cursor: pointer
+  font-size: 1rem
+  outline: none
+  padding: 1rem 2rem
+  transition: all 0.3s $easeInOut
+
+  &:hover
+    background: lighten($primaryColor, 10%)
+    box-shadow: -15px 15px 30px $shadowColor, 0.05
+    transform: translateY(-2px)
+
+  &:disabled
+    background: desaturate(lighten($primaryColor, 27%), 40%)
+    cursor: not-allowed
+
+  &:disabled:hover,
+  &:active
+    box-shadow: 0 8px 15px $shadowColor
+    transform: translateY(0)
