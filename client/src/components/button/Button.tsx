@@ -3,7 +3,7 @@ import * as React from 'react';
 import styles from './Button.module.sass';
 
 interface IProps {
-  label: string;
+  label?: string;
   type?: string;
   className?: string;
   disabled?: boolean;
@@ -13,7 +13,7 @@ interface IProps {
 
 class Button extends React.Component<IProps, {}> {
   public render() {
-    const { label, loading, className, ...props } = this.props;
+    const { label, loading, className, children, ...props } = this.props;
 
     return (
       <button
@@ -22,7 +22,7 @@ class Button extends React.Component<IProps, {}> {
         }`}
         {...props}
       >
-        {label}
+        {label || children}
       </button>
     );
   }

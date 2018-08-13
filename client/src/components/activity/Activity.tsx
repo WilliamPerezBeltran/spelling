@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { observer } from 'mobx-react';
+import SVG from 'react-inlinesvg';
 
 import AppState from '../app-state';
 import Button from '../button';
@@ -8,6 +9,8 @@ import Input from '../input';
 import Letter from '../letter';
 import Speech from '../speech';
 import Actions from './Actions';
+
+import speaker from '../../assets/images/speaker.svg';
 
 import styles from './Activity.module.sass';
 
@@ -50,13 +53,14 @@ class Form extends React.Component<{ appState: AppState }, {}> {
 
           <div className={styles.speakContainer}>
             <Button
-              label="Speak!"
               type="button"
               onClick={this.speak}
               className={styles.speak}
               disabled={this.speech.speaking}
               loading={this.speech.speaking}
-            />
+            >
+              <SVG src={speaker} />
+            </Button>
           </div>
         </div>
 
