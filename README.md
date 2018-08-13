@@ -2,6 +2,8 @@
 
 Spelling exercises test.
 
+[[https://github.com/daninfpj/spelling/blob/master/demo.gif|alt=Demo]]
+
 ## Stack
 
 - Ruby 2.4.1
@@ -33,3 +35,12 @@ yarn prettify
 # TSLint and Sass Lint
 yarn lint
 ```
+
+```
+Rubocop
+rubocop -a app/
+```
+
+# Documentation
+
+`client/docs`
