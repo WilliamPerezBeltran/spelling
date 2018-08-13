@@ -8,6 +8,7 @@ class Speech {
   @action
   public speak(text: string) {
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
     this.synth.speak(utterance);
     utterance.onend = this.onStop;
     this.speaking = true;
