@@ -4,7 +4,7 @@ import Audio from '../audio';
 import Term from '../term';
 
 class AppState {
-  public static MAX_STEPS = 3;
+  public static STEPS_COUNT = 3;
   @observable
   public term: Term;
   @observable
@@ -21,6 +21,8 @@ class AppState {
   public loading: boolean = false;
   @observable
   public transitioning: boolean = false;
+
+  public correctCount: number = 0;
 
   // User input
   @computed
@@ -41,7 +43,7 @@ class AppState {
 
   @computed
   public get atLastStep(): boolean {
-    return this.index === AppState.MAX_STEPS - 1;
+    return this.index === AppState.STEPS_COUNT - 1;
   }
 
   // Done with the activities
@@ -50,11 +52,13 @@ class AppState {
     return this.atLastStep && this.checked;
   }
 
+  // Prepare next term
   @action
   public setNextTerm(term: string) {
     this.nextTerm = new Term(term);
   }
 
+  // Set User input
   @action
   public setInput(index: number, input: string) {
     this.inputArray[index] = input;
@@ -63,6 +67,7 @@ class AppState {
     this.setFocus(input ? index + 1 : index);
   }
 
+  // User tapped a letter
   @action
   public tap(index: number) {
     const insertAt = this.inputArray.findIndex(char => char === '');
@@ -72,6 +77,7 @@ class AppState {
     this.setFocus(insertAt + 1);
   }
 
+  // Check activity
   @action
   public check() {
     this.checked = true;
@@ -81,10 +87,12 @@ class AppState {
       return false;
     }
 
+    this.correctCount += 1;
     Audio.check();
     return true;
   }
 
+  // Move to the next activity
   @action
   public next() {
     this.transitioning = true;

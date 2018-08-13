@@ -6,18 +6,25 @@ import AppState from '../app-state';
 import Button from '../button';
 import Info from '../info';
 
+import styles from '../info/Info.module.sass';
+
 @observer
 class Welcome extends React.Component<{ appState: AppState }, {}> {
   public render() {
+    const { appState } = this.props;
+
     return (
       <Info>
         <h3>Welcome!</h3>
-        <p>Start studying.</p>
+        <p className={styles.infoParagraph}>
+          You’re gonna listen to a few english words that you’ll have to spell.
+          Have fun!
+        </p>
         <Button
           onClick={this.onNext}
           label="Let’s do this"
-          disabled={!this.props.appState.ready}
-          loading={!this.props.appState.ready}
+          disabled={!appState.ready}
+          loading={!appState.ready}
         />
       </Info>
     );

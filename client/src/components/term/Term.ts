@@ -6,6 +6,7 @@ interface ILetter {
 }
 
 class Term {
+  // Original, ordered term
   public original: string;
   @observable
   public data: ILetter[];
@@ -23,6 +24,7 @@ class Term {
       .map(letter => ({ char: letter, available: true }));
   }
 
+  // Array of chars of the original term
   public get chars(): string[] {
     return this.original.split('');
   }
@@ -31,6 +33,7 @@ class Term {
     return this.original.length;
   }
 
+  // Letters not used yet
   @computed
   get available(): string[] {
     return this.data

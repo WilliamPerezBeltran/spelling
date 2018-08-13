@@ -34,7 +34,7 @@ class Lesson extends React.Component<{ appState: AppState }, {}> {
     switch (appState.index) {
       case -1:
         return <Welcome appState={appState} />;
-      case AppState.MAX_STEPS:
+      case AppState.STEPS_COUNT:
         return <Summary appState={appState} />;
       default:
         return <Activity appState={appState} />;

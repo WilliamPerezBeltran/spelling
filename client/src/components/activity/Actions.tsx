@@ -15,7 +15,7 @@ class Actions extends React.Component<{ appState: AppState }, {}> {
     return (
       <div className={styles.actions}>
         <div>
-          {appState.index + 1}/{AppState.MAX_STEPS}
+          {appState.index + 1}/{AppState.STEPS_COUNT}
         </div>
         {appState.checked ? (
           <Button
