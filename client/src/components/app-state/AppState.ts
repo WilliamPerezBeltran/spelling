@@ -6,7 +6,7 @@ import Term from '../term';
 class AppState {
   public static STEPS_COUNT = 3;
   @observable
-  public term: Term;
+  public term: Term = new Term('');
   @observable
   public nextTerm: Term = new Term('');
   @observable
@@ -98,9 +98,7 @@ class AppState {
     this.transitioning = true;
 
     setTimeout(() => {
-      this.term = this.nextTerm;
-      this.nextTerm = new Term('');
-      this.reset();
+      this.updateTerm();
       this.index += 1;
       this.transitioning = false;
     }, 1000);
@@ -109,6 +107,19 @@ class AppState {
   @action
   public setLoading(value: boolean) {
     this.loading = value;
+  }
+
+  @action
+  public setTerm(term: string) {
+    this.nextTerm = new Term(term);
+    this.updateTerm();
+  }
+
+  @action
+  private updateTerm() {
+    this.term = this.nextTerm;
+    this.nextTerm = new Term('');
+    this.reset();
   }
 
   @action

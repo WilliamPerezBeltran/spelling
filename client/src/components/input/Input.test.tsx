@@ -8,6 +8,11 @@ import Input from './Input';
 
 const appState = new AppState();
 
+beforeEach(() => {
+  appState.setTerm('test');
+});
+
+
 describe('<Input />', () => {
   it('renders with refs', () => {
     const setInputMock = jest.spyOn(appState, 'setInput');

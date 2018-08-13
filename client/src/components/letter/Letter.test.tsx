@@ -8,6 +8,10 @@ import Letter from './Letter';
 
 const appState = new AppState();
 
+beforeEach(() => {  
+  appState.setTerm('test');
+});
+
 describe('<Form />', () => {
   it('renders withouth crashing', () => {
     const tapMock = jest.spyOn(appState, 'tap');
