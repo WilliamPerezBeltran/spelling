@@ -2,7 +2,7 @@
 
 Spelling exercises test.
 
-[[https://github.com/daninfpj/spelling/blob/master/demo.gif|alt=Demo]]
+![Demo](https://github.com/daninfpj/spelling/blob/master/demo.gif)
 
 ## Stack
 
