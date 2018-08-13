@@ -1,8 +1,12 @@
 @import "../../styles/variables"
 
 .container
-  margin-right: 0.25rem
+  display: inline-block
+  margin: 0 1px 3px 0
   position: relative
+
+  @include desktop
+    margin: 0 0.25rem 0.25rem 0
 
   &::after
     position: absolute
@@ -23,7 +27,7 @@
   font-size: 1rem
   line-height: 2rem
   outline: 0
-  padding: 0.5rem
+  padding: 0
   text-align: center
   text-transform: capitalize
   width: 2rem
@@ -31,6 +35,9 @@
   &:focus
     border-color: $outlineColor
     box-shadow: 0 0 2px transparentize($outlineColor, 0.4)
+
+  @include desktop
+    padding: 0.5rem
 
 .inputError
   border-color: $borderColorError

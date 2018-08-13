@@ -15,3 +15,14 @@ $gray: hsl(204, 31%, 83%)
 $white: hsl(178, 35%, 99%)
 
 $easeInOut: cubic-bezier(0.645, 0.045, 0.355, 1)
+
+$tabletWidth: 768px
+$desktopWidth: 1024px
+
+@mixin tablet
+  @media (min-width: #{$tabletWidth}) and (max-width: #{$desktopWidth - 1px})
+    @content
+
+@mixin desktop
+  @media (min-width: #{$desktopWidth})
+    @content
