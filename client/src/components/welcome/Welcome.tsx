@@ -17,6 +17,7 @@ class Welcome extends React.Component<{ appState: AppState }, {}> {
           onClick={this.onNext}
           label="Let’s do this"
           disabled={!this.props.appState.ready}
+          loading={!this.props.appState.ready}
         />
       </Info>
     );

@@ -7,14 +7,22 @@ interface IProps {
   type?: string;
   className?: string;
   disabled?: boolean;
+  loading?: boolean;
   onClick?: (e: any) => void;
 }
 
 class Button extends React.Component<IProps, {}> {
   public render() {
+    const { label, loading, className, ...props } = this.props;
+
     return (
-      <button className={styles.button} {...this.props}>
-        {this.props.label}
+      <button
+        className={`${className ? className : styles.button} ${
+          loading ? styles.loading : ''
+        }`}
+        {...props}
+      >
+        {label}
       </button>
     );
   }

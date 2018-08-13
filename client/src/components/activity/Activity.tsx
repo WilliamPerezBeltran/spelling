@@ -3,6 +3,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react';
 
 import AppState from '../app-state';
+import Button from '../button';
 import Input from '../input';
 import Letter from '../letter';
 import Speech from '../speech';
@@ -48,14 +49,14 @@ class Form extends React.Component<{ appState: AppState }, {}> {
           </div>
 
           <div className={styles.speakContainer}>
-            <button
+            <Button
+              label="Speak!"
               type="button"
               onClick={this.speak}
               className={styles.speak}
               disabled={this.speech.speaking}
-            >
-              Speak!
-            </button>
+              loading={this.speech.speaking}
+            />
           </div>
         </div>
 

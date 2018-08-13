@@ -28,3 +28,32 @@
   &:active
     box-shadow: 0 8px 15px $shadowColor
     transform: translateY(0)
+
+.loading
+  color: desaturate(lighten($primaryColor, 27%), 40%)
+  position: relative
+
+  &::before,
+  &::after
+    background-color: $white
+    border-radius: 50%
+    content: ""
+    opacity: 0.6
+    width: 1.5rem
+    height: 1.5rem
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    animation: bounce 2s infinite $easeInOut
+
+  &::after
+    animation-delay: -1s
+
+@keyframes bounce
+  0%,
+  100%
+    transform: translate(-50%, -50%) scale(0)
+
+  50%
+    transform: translate(-50%, -50%) scale(1)
