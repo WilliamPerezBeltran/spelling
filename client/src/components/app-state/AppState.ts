@@ -3,11 +3,12 @@ import { action, computed, observable } from 'mobx';
 import Audio from '../audio';
 import Term from '../term';
 
-const terms: string[] = ['nice', 'done', 'dog', 'get it'];
-
 class AppState {
-  public static MAX_STEPS = 1;
+  public static MAX_STEPS = 3;
+  @observable
   public term: Term;
+  @observable
+  public nextTerm: Term = new Term('');
   @observable
   public inputArray: string[];
   @observable
@@ -17,19 +18,24 @@ class AppState {
   @observable
   public index: number = -1;
   @observable
+  public loading: boolean = false;
+  @observable
   public transitioning: boolean = false;
 
-  constructor() {
-    this.reset();
-  }
-
+  // User input
   @computed
   public get input(): string {
     return this.inputArray.join('');
   }
 
+  // Ready to move to the next step
   @computed
   public get ready(): boolean {
+    return !this.loading && this.nextTerm.length > 0;
+  }
+
+  @computed
+  public get readyToCheck(): boolean {
     return this.input.length === this.term.length;
   }
 
@@ -38,9 +44,15 @@ class AppState {
     return this.index === AppState.MAX_STEPS - 1;
   }
 
+  // Done with the activities
   @computed
   public get done(): boolean {
     return this.atLastStep && this.checked;
+  }
+
+  @action
+  public setNextTerm(term: string) {
+    this.nextTerm = new Term(term);
   }
 
   @action
@@ -78,10 +90,17 @@ class AppState {
     this.transitioning = true;
 
     setTimeout(() => {
+      this.term = this.nextTerm;
+      this.nextTerm = new Term('');
       this.reset();
       this.index += 1;
       this.transitioning = false;
     }, 1000);
+  }
+
+  @action
+  public setLoading(value: boolean) {
+    this.loading = value;
   }
 
   @action
@@ -93,7 +112,6 @@ class AppState {
 
   @action
   private reset() {
-    this.term = new Term(terms[Math.floor(Math.random() * terms.length)]);
     this.inputArray = this.term.chars.map(() => '');
     this.focusIndex = 0;
     this.checked = false;

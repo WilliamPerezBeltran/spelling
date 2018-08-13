@@ -21,9 +21,14 @@ class Actions extends React.Component<{ appState: AppState }, {}> {
           <Button
             label={appState.atLastStep ? 'Finish' : 'Next'}
             onClick={this.onNext}
+            disabled={!appState.ready}
           />
         ) : (
-          <Button label="Check" type="submit" disabled={!appState.ready} />
+          <Button
+            label="Check"
+            type="submit"
+            disabled={!appState.readyToCheck}
+          />
         )}
       </div>
     );

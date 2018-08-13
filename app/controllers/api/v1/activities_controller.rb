@@ -11,7 +11,9 @@ module Api::V1
         Net::HTTP.get(URI("#{DATAMUSE_API_BASE}words?topics=literature"))
       )
 
-      activity = Activity.new(data.sample['word'])
+      activity = Activity.new(
+        data.select { |result| result['word'].length < 10 }.sample['word']
+      )
 
       render json: ::ActivitySerializer.new(activity).serialized_json
     end

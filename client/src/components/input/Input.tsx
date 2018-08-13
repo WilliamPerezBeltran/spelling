@@ -20,7 +20,9 @@ class Input extends React.Component<IProps, {}> {
   }
 
   public componentDidUpdate(prevProps: IProps, prevState: any, snapshot: any) {
-    this.fields[this.props.appState.focusIndex].focus();
+    if (this.fields[this.props.appState.focusIndex]) {
+      this.fields[this.props.appState.focusIndex].focus();
+    }
   }
 
   public render() {

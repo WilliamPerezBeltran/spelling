@@ -69,7 +69,7 @@ class Form extends React.Component<{ appState: AppState }, {}> {
 
     e.preventDefault();
 
-    if (!appState.ready) {
+    if (!appState.readyToCheck) {
       return;
     }
 
