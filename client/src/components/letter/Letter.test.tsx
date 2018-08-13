@@ -8,7 +8,7 @@ import Letter from './Letter';
 
 const appState = new AppState();
 
-beforeEach(() => {  
+beforeEach(() => {
   appState.setTerm('test');
 });
 

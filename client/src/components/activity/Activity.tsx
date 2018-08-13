@@ -19,9 +19,11 @@ class Form extends React.Component<{ appState: AppState }, {}> {
   private speech = new Speech();
 
   public componentDidMount() {
-    setTimeout(() => {
-      this.speak();
-    }, 300);
+    if (!navigator.userAgent.match(/mobile.+safari/i)) {
+      setTimeout(() => {
+        this.speak();
+      }, 300);
+    }
   }
 
   public render() {

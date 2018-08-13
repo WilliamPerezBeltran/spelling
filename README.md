@@ -24,6 +24,10 @@ yarn test
 yarn test --coverage
 ```
 
+```
+rake spec
+```
+
 ## Format and linters
 
 ```
