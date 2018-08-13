@@ -1,19 +1,11 @@
-$whiteColor: #ffffff
-$shadowColor: rgba(0, 0, 0, .15)
-$buttonBorder: #a5b3c0
+@import "../../styles/variables"
 
 .activity
-  background: $whiteColor
+  background: $white
   border-radius: 0.25rem
-  box-shadow: 0 2px 8px $shadowColor
+  box-shadow: -10px 10px 20px transparentize($shadowColor, 0.05)
   margin: 0 auto
-  min-width: 320px
-  padding: 3rem
+  max-width: 640px
+  width: 100%
+  padding-top: 3rem
   text-align: center
-
-.button
-  border: 1px solid $buttonBorder
-  border-radius: 50%
-  height: 4rem
-  width: 4rem
-  outline: none

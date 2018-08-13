@@ -82,15 +82,15 @@ class Input extends React.Component<IProps, {}> {
       }
     }
 
-    if (e.which === 8 || e.which === 46) {
+    if (!this.props.appState.checked && (e.which === 8 || e.which === 46)) {
       Audio.tap();
     }
   };
 
   private onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const allowed = ['Enter', ...this.props.appState.term.available];
+    const allowed = ['enter', ...this.props.appState.term.available];
 
-    if (!allowed.includes(e.key)) {
+    if (!allowed.includes(e.key.toLowerCase())) {
       e.preventDefault();
       return;
     }
@@ -102,7 +102,7 @@ class Input extends React.Component<IProps, {}> {
     const target = e.currentTarget;
     const index = parseInt(e.currentTarget.dataset.index || '', 10);
 
-    this.props.appState.setInput(index, target.value);
+    this.props.appState.setInput(index, target.value.toLowerCase());
   };
 }
 

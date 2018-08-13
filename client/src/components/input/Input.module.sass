@@ -1,8 +1,4 @@
-$borderColor: hsl(210, 10%, 80%)
-$colorSuccess: hsl(134, 61%, 21%)
-$borderColorSuccess: hsl(134, 41%, 73%)
-$colorError: hsl(354, 61%, 28%)
-$borderColorError: hsl(354, 70%, 67%)
+@import "../../styles/variables"
 
 .container
   margin-right: 0.25rem
@@ -20,15 +16,21 @@ $borderColorError: hsl(354, 70%, 67%)
     content: attr(data-char)
 
 .input
-  border: 2px solid $borderColor
+  border: 2px solid $gray
   border-radius: 0.25rem
+  color: $textColor
   display: inline-block
   font-size: 1rem
   line-height: 2rem
+  outline: 0
   padding: 0.5rem
   text-align: center
   text-transform: capitalize
   width: 2rem
+
+  &:focus
+    border-color: $outlineColor
+    box-shadow: 0 0 2px transparentize($outlineColor, 0.4)
 
 .inputError
   border-color: $borderColorError
@@ -39,9 +41,17 @@ $borderColorError: hsl(354, 70%, 67%)
   animation-timing-function: linear
   animation-iteration-count: 1
 
+  &:focus
+    border-color: $borderColorError
+    box-shadow: none
+
 .inputSuccess
   border-color: $borderColorSuccess
   color: $colorSuccess
+
+  &:focus
+    border-color: $borderColorSuccess
+    box-shadow: none
 
 @keyframes buzz-out
   10%

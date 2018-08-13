@@ -1,26 +1,29 @@
-$letter: hsla(210, 90%, 80%, 0.3)
-$borderColor: hsl(210, 10%, 80%)
-$white: #ffffff
+@import "../../styles/variables"
 
 .container
   background: $letter
-  border: 2px solid $borderColor
+  border: 2px solid $letter
   border-radius: 0.25rem
+  box-shadow: 0 4px 8px $shadowColor
+  color: $white
   cursor: pointer
   display: inline-block
   margin-right: 0.25rem
   padding: 0.5rem
+  transition: all 0.3s $easeInOut
 
 .containerUnavailable
   composes: container
   background: transparent
-  border-style: dashed
+  border: 2px dashed $gray
+  box-shadow: none
   cursor: default
 
 .char
   display: inline-block
   line-height: 2rem
   text-transform: capitalize
+  transition: all 0.3s $easeInOut
   width: 2rem
 
 .charUnavailable
