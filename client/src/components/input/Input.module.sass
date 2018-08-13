@@ -9,11 +9,16 @@
     margin: 0 0.25rem 0.25rem 0
 
   &::after
+    font-size: $inputFontSize
     position: absolute
     left: 50%
-    top: -1.5rem
+    top: -1rem
     text-transform: capitalize
     transform: translateX(-50%)
+
+    @include desktop
+      font-size: $desktopInputFontSize
+      top: -1.5rem
 
 .containerError
   &::after
@@ -24,13 +29,13 @@
   border-radius: 0.25rem
   color: $textColor
   display: inline-block
-  font-size: 1rem
-  line-height: 2rem
+  font-size: $inputFontSize
+  line-height: $inputSize
   outline: 0
   padding: 0
   text-align: center
   text-transform: capitalize
-  width: 2rem
+  width: $inputSize
   -webkit-appearance: none
 
   &:focus
@@ -38,7 +43,10 @@
     box-shadow: 0 0 2px transparentize($outlineColor, 0.4)
 
   @include desktop
+    font-size: $desktopInputFontSize
+    line-height: $desktopInputSize
     padding: 0.5rem
+    width: $desktopInputSize
 
 .inputError
   border-color: $borderColorError

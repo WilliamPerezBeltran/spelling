@@ -19,15 +19,22 @@
 .speakContainer
   position: absolute
   left: 50%
-  transform: translate(-50%, -1rem)
+  transform: translate(-50%, -0.5rem)
+
+  @include desktop
+    transform: translate(-50%, -1rem)
 
 .speak
   composes: button from "../button/Button.module.sass"
   background: $secondaryColor
   border-radius: 50%
-  height: 4rem
+  height: 3rem
   padding: 0
-  width: 4rem
+  width: 3rem
+
+  @include desktop
+    height: 4rem
+    width: 4rem
 
   &:hover:not(:disabled)
     background: lighten($secondaryColor, 10%)

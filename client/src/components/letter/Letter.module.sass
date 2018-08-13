@@ -24,10 +24,14 @@
 
 .char
   display: inline-block
-  line-height: 2rem
+  line-height: $inputSize
   text-transform: capitalize
   transition: all 0.3s $easeInOut
-  width: 2rem
+  width: $inputSize
+
+  @include desktop
+    line-height: $desktopInputSize
+    width: $desktopInputSize
 
 .charUnavailable
   composes: char
