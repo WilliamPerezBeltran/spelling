@@ -7,9 +7,14 @@ module Api::V1
     DATAMUSE_API_BASE = 'https://api.datamuse.com/'
 
     def index
-      data = JSON.parse(
-        Net::HTTP.get(URI("#{DATAMUSE_API_BASE}words?topics=literature"))
-      )
+      begin
+        data = JSON.parse(
+          Net::HTTP.get(URI("#{DATAMUSE_API_BASE}words?topics=literature"))
+        )
+      rescue StandardError => error
+        dict = JSON.parse(open(Rails.root.join('app', 'data', 'words.json')).read)
+        data = [{ 'word' => dict.sample }]
+      end
 
       activity = Activity.new(
         data.select { |result| result['word'].length < 10 }.sample['word']
