@@ -1,2 +1,2 @@
-client: sh -c 'cd client && yarn start'
+client: yarn --cwd client start
 api: bundle exec rails s

@@ -1,3 +1,15 @@
 {
-  "extends": "./tsconfig.json"
+  "extends": "./tsconfig.json",
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "docs",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+  ]
 }

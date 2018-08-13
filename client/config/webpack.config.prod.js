@@ -157,6 +157,7 @@ module.exports = {
           // Compile .tsx?
           {
             test: /\.(ts|tsx)$/,
+            exclude: /\.test\./,
             include: paths.appSrc,
             use: [
               {
