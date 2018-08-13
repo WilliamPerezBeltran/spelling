@@ -6,13 +6,22 @@ import Term from '../term';
 const terms: string[] = ['nice', 'done', 'dog', 'get it'];
 
 class AppState {
-  public term = new Term(terms[Math.floor(Math.random() * terms.length)]);
+  public static MAX_STEPS = 1;
+  public term: Term;
   @observable
-  public inputArray: string[] = this.term.chars.map(() => '');
+  public inputArray: string[];
   @observable
-  public focusIndex: number = 0;
+  public focusIndex: number;
   @observable
-  public checked: boolean = false;
+  public checked: boolean;
+  @observable
+  public index: number = -1;
+  @observable
+  public transitioning: boolean = false;
+
+  constructor() {
+    this.reset();
+  }
 
   @computed
   public get input(): string {
@@ -22,6 +31,16 @@ class AppState {
   @computed
   public get ready(): boolean {
     return this.input.length === this.term.length;
+  }
+
+  @computed
+  public get atLastStep(): boolean {
+    return this.index === AppState.MAX_STEPS - 1;
+  }
+
+  @computed
+  public get done(): boolean {
+    return this.atLastStep && this.checked;
   }
 
   @action
@@ -55,10 +74,29 @@ class AppState {
   }
 
   @action
+  public next() {
+    this.transitioning = true;
+
+    setTimeout(() => {
+      this.reset();
+      this.index += 1;
+      this.transitioning = false;
+    }, 1000);
+  }
+
+  @action
   private setFocus(index: number) {
     if (index > -1 && index < this.term.length) {
       this.focusIndex = index;
     }
+  }
+
+  @action
+  private reset() {
+    this.term = new Term(terms[Math.floor(Math.random() * terms.length)]);
+    this.inputArray = this.term.chars.map(() => '');
+    this.focusIndex = 0;
+    this.checked = false;
   }
 }
 

@@ -1,11 +1,27 @@
 @import "../../styles/variables"
 
-.activity
-  background: $white
-  border-radius: 0.25rem
-  box-shadow: -10px 10px 20px transparentize($shadowColor, 0.05)
-  margin: 0 auto
-  max-width: 640px
-  width: 100%
-  padding-top: 3rem
-  text-align: center
+.body
+  padding: 0 2rem 1rem
+  position: relative
+
+.inputContainer
+  margin: 3rem 0 1rem
+
+.lettersContainer
+  margin-bottom: 4rem
+
+.speakContainer
+  position: absolute
+  left: 50%
+  transform: translate(-50%, -1rem)
+
+.speak
+  composes: button from "../button/Button.module.sass"
+  background: $secondaryColor
+  border-radius: 50%
+  height: 4rem
+  padding: 0
+  width: 4rem
+
+  &:hover
+    background: lighten($secondaryColor, 10%)

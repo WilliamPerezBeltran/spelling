@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import Activity from './activity';
 import AppState from './app-state';
+import Lesson from './lesson';
 
 import styles from './App.module.sass';
 
@@ -11,7 +11,7 @@ class App extends React.Component {
   public render() {
     return (
       <div className={styles.app}>
-        <Activity appState={appState} />
+        <Lesson appState={appState} />
       </div>
     );
   }

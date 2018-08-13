@@ -9,3 +9,25 @@ body {
 body, input[type=text] {
   font-family: "Cutive Mono", monospace;
 }
+
+:global(.transition-enter) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+:global(.transition-enter-active) {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+  transition: all 1000ms ease-in-out;
+}
+
+:global(.transition-exit) {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+
+:global(.transition-exit-active) {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: all 1000ms ease-in-out;
+}
